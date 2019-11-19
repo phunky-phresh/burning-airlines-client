@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+// TEST
 // const SERVER_URL = 'http://localhost:3000/flights.json';
 
 class FlightSearch extends Component {
