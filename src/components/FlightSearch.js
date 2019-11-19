@@ -7,7 +7,7 @@ class FlightSearch extends Component {
   constructor() {
     super();
     this.state = {
-      flights: []
+      flights: ''
     };
 
     const fetchFlights = (q) => {
@@ -36,7 +36,7 @@ class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      query: ''
+      flights: ''
     };
     this._handleInput = this._handleInput.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -44,7 +44,7 @@ class SearchForm extends Component {
 
   _handleInput(event) {
     this.setState({
-      query: event.target.value
+      flights: event.target.value
     });
   }
 _handleSubmit(event) {
@@ -69,7 +69,7 @@ const Gallery = (props) => {
     <div>
       <h3>Gallery coming soon</h3>
       {
-        // props.flights.map( (f) => <p>{f.flightno}</p> )
+        // props.flights.map( (f) => <p>{f.origin}</p> )
       }
     </div>
   )
