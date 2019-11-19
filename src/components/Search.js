@@ -4,7 +4,7 @@ import axios from 'axios';
 // TEST
 // const SERVER_URL = 'http://localhost:3000/flights.json';
 
-class FlightSearch extends Component {
+class Search extends Component {
   constructor() {
     super();
     this.state = {
@@ -76,4 +76,4 @@ const Gallery = (props) => {
   )
 }
 
-export default FlightSearch;
+export default Search;

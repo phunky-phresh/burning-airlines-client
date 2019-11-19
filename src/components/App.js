@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import FlightSearch from './FlightSearch';
+import Search from './Search';
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         </nav>
       </header>
       <h1>Burning Airlines</h1>
-      <FlightSearch />
+      <Search />
     </div>
   );
 }
