@@ -8,20 +8,22 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      flights: []
-    };
+      // flights: []
+      origin: '',
+      destination: ''
+    }
 
-  const fetchFlights = (q) => {
-    axios.get(`http://localhost:3000/flights.json`).then(result => {
-      console.log(result);
-      const flights = result.data;
-      this.setState({flights});
-    });
-  }
+
   // fetchFlights();
 
 }
-
+fetchFlights(q) {
+  axios.get(`http://localhost:3000/flights.json`).then(result => {
+    console.log(result);
+    const flights = result.data;
+    this.setState({flights});
+  });
+}
 
 
 render() {
@@ -39,15 +41,25 @@ class SearchForm extends Component {
 constructor() {
   super();
   this.state = {
-    query: ''
+    origin: '',
+    destination: ''
   };
-  this._handleInput = this._handleInput.bind(this);
+  this._handleInputOrigin = this._handleInputOrigin.bind(this);
+  this._handleInputDestination = this._handleInputDestination.bind(this);
   this._handleSubmit = this._handleSubmit.bind(this);
 }
 
-_handleInput(event) {
+_handleInputOrigin(event) {
   this.setState({
-    query: event.target.value
+    // query: event.target.value,
+    origin: event.target.value,
+
+  });
+}
+_handleInputDestination(event) {
+  this.setState({
+    // query: event.target.value,
+    destination: event.target.value
   });
   // console.log(event.target.value);
   //event.target.value is working
@@ -61,8 +73,8 @@ this.props.onSubmit(this.state.query);
 render() {
   return(
     <form onSubmit={this._handleSubmit}>
-      <input type="search" onInput={this._handleInput} placeholder="origin"/>
-      <input type="search" onInput={this._handleInput} placeholder="destination" />
+      <input type="search" onInput={this._handleInputOrigin} placeholder="origin"/>
+      <input type="search" onInput={this._handleInputDestination} placeholder="destination" />
       <input type="submit" value="search" />
     </form>
   );
