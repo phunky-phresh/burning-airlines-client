@@ -12,12 +12,12 @@ class Booking extends Component {
     super();
     this.state = {
       flight: { },
-      flight_no: ''
+      flight_no: 1
     };
 
     const fetchFlightInfo = () => {
-      axios.get(SERVER_FLIGHTS_URL).then(results => {
-        console.log(results);
+      axios.get(SERVER_FLIGHTS_URL).then((results) => {
+        console.log(results.data);
       });
     }
 
