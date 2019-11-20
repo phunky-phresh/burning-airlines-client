@@ -1,97 +1,68 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-// TEST
-// const SERVER_URL = 'http://localhost:3000/flights.json';
+const SERVER_FLIGHTS_URL = 'http://localhost:3000/flights.json';
+// const SERVER_PLANES_URL = 'http://localhost:3000/planes.json' // will only need this if adding new flights
 
 class Flights extends Component {
-
-constructor(){
-  super();
-  this.state ={
-    flights:[]
+  constructor(props) {
+    super(props);
+      this.state = {
+      flights:[],
+      planes: [],
+      user: this.props.match.params.user
   };
 
 
   const fetchFlights = () => {
-    console.log('Fettching flights');
-    const flightsUrl = `http://localhost:3000/flights.json`;
-    axios.get(flightsUrl).then((results)=>{
-      // console.log(results);
-      this.setState({flights: results.data})
+    // console.log('Fetching flights');
+    axios.get(SERVER_FLIGHTS_URL).then( (results) => {
+        // console.log(results);
+      this.setState({flights: results.data});
       console.log(results.data);
+      setTimeout(fetchFlights, 4000);
     });
   };
-fetchFlights();
 
-}
+    fetchFlights();
+  }
 
   render() {
-    return(
+    return (
       <div>
-        <h2>Flight info comming soon</h2>
-        <Gallery flights={this.state.flights}/>
+        <FlightsTable flights={ this.state.flights }/>
+      </div>
+    )
 
+  }
+}
+
+class FlightsTable extends Component {
+  render() {
+    return (
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Flight No</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.props.flights.map( (flight) =>
+            <tr key={ flight.id }>
+              <td>{ flight.date }</td>
+              <td>{ flight.flight_no }</td>
+              <td>{ flight.origin }</td>
+              <td>{ flight.destination }</td>
+            </tr>) }
+          </tbody>
+        </table>
       </div>
     );
   }
 }
-
-class SearchForm extends Component {
-  constructor() {
-    super();
-    this.state ={query: ''};
-    // this.state = {
-    //   flights: ''
-    // };
-    this._handleInput = this._handleInput.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
-
-  _handleInput(event) {
-    this.setState({
-      flights: event.target.value
-    });
-  }
-_handleSubmit(event) {
-  event.preventDefault();
-  this.props.onSubmit(this.state.query);
-}
-
-  render() {
-    return(
-      <form onSubmit={this._handleSubmit}>
-        <input type="search" onInput={this._handleInput} />
-        <input type="submit" value="search" />
-      </form>
-    )
-  }
-};
-
-const Gallery = (props) => {
-
-
-  return(
-
-<table>
-<thead>
-<tr>
-<th>flight_no</th>
-<th>origin</th>
-<th>destination</th>
-<th>Date</th>
-</tr>
-</thead>
-<tbody>
-
-      <tr>
-       {props.flights.map((f) => <td >{f.flight_no} </td>)}
-       {props.flights.map((f) => <td >{f.origin} </td>)}
-       </tr>
-
-</tbody>
-    </table>
-  )
-};
 
 export default Flights;
