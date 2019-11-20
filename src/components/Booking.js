@@ -1,33 +1,72 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import axios from 'axios';
 
-class Booking extends Component{
-constructor(){
-  this.state = {
-    name:'',
-    rows:0,
-    colomns:0,
+
+const SERVER_FLIGHTS_URL = 'http://localhost:3000/flights.json';
+const SERVER_RESERVATIONS_URL = 'http://localhost:3000/reservations.json';
+const SERVER_USERS_URL = 'http://localhost:3000/users.json';
+
+class Booking extends Component {
+  constructor() {
+    super();
+    this.state = {
+      flight: { },
+      flight_no: ''
+    };
+
+    const fetchFlightInfo = () => {
+      axios.get(SERVER_FLIGHTS_URL).then(results => {
+        console.log(results);
+      });
+    }
+
+  fetchFlightInfo();
   }
 
+  render() {
+    return (
+      <div>
+        <h1>coming soon</h1>
+      </div>
+    )
+  }
 }
 
-_handleInputName(q)
-this.setState({name: q.target.value})
+class BookingBoard extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			reservations: [],
+			user_id: ''
+		}
 
-_handleInputRows(){
+		axios.get(SERVER_USERS_URL).then((results) => {
+			results.data.some ( (user) => {
+				if ( user.name === this.props.user ){
+					this.setState({ user_id: user.id });
+					return true;
+				}else{
+					return false;
+				}
+			})
+		})
+
+
+	}
+
+
+	createBoard() {
+
+  }
+
+  render(){
+    return(
+      <div>
+
+      </div>
+    )
+  }
 }
 
-_handleInputSubmit(){
-  e.
-  this.props
-}
-render(){
-return{
-  <form onSubmit={this._handleSubmit}>
-  <label>Rows<label/>
-  <input type='number' onInput={this._handleInputRows}/>
-  <label>Colomns<label/>
-  <input type='number' onInput={this._handleInputColomns}/>
-  <input type='submit'/>
-  <
-}
-}
+export default Booking;
