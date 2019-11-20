@@ -8,28 +8,32 @@ const SERVER_USERS_URL = 'http://localhost:3000/users.json';
 
 class Booking extends Component {
   constructor(props) {
-    console.log(props);
+
     super();
     this.state = {
       flight: []
-      // flight_no:
     };
     const flight_id = props.match.params.flight;
-    console.log(flight_id);
-    const fetchFlightInfo = (flight_id) => {
+    // console.log(this.state.flight);
+    const fetchFlightInfo = () => {
       axios.get(`http://localhost:3000/flights/${flight_id}.json`).then((results) => {
-        console.log(results.data);
+
         const flight = results.data;
+        console.log(flight);
         this.setState({flight: flight});
+        // setInterval( fetchFlightInfo, 2000);
       });
     }
 
-    fetchFlightInfo(flight_id);
+    fetchFlightInfo();
   }
 
   render() {
     return (
       <div>
+      <nav>
+        <Link to='/Flights/search'><p>Search</p></Link>
+      </nav>
         <h1>flight booking coming soon</h1>
         <table>
         <thead>
@@ -41,13 +45,68 @@ class Booking extends Component {
           </tr>
         </thead>
         <tbody>
-        <tr><td>{this.state.flight.flight_no}</td><td>{this.state.flight.origin}</td><td>{this.state.flight.destination}</td><td>{this.state.flight.date}</td></tr>
+        <tr>
+        <td>{this.state.flight.flight_no}</td><td>{this.state.flight.origin}</td><td>{this.state.flight.destination}</td><td>{this.state.flight.date}</td>
+        </tr>
         </tbody>
         </table>
+        <PlaneSeats flightData={this.state.flight}/>
       </div>
     )
+    console.log(this.state.flight);
+
   }
 }
+
+const PlaneSeats = (props) => {
+  console.log('rendering with these props', props.flightData.plane_id);
+  const plane_id = props.flightData.plane_id;
+  console.log(plane_id);
+
+  const fetchPlaneInfo = () => {
+    axios.get(`http://localhost:3000/planes/${plane_id}.json`).then((results) => {
+
+      // const plane = results.data;
+      console.log(results);
+      // this.setState({flight: flight});
+      // setInterval( fetchFlightInfo, 2000);
+    });
+  }
+  fetchPlaneInfo();
+
+  return (
+    <h2>plane seats coming soon</h2>
+  )
+}
+
+// class PlaneSeats extends Component {
+//   constructor(flightData) {
+//     console.log(flightData);
+//     super();
+//     this.state = {
+//       plane: []
+//     };
+    // const plane_id = plane_id;
+    // console.log(plane_id);
+    // const fetchPlaneInfo = (plane_id) => {
+    //   axios.get(`http://localhost:3000/planes/${plane_id}.json`).then((results) => {
+    //
+    //     const plane = results.data;
+    //     console.log(plane);
+    //     this.setState({plane: plane});
+    //     setInterval( fetchPlaneInfo, 2000);
+    //     console.log(plane);
+    //   });
+    // }
+    // fetchPlaneInfo();
+  // }
+
+//   render() {
+//     return(
+//       <h2>Seating Plan Coming soon</h2>
+//     );
+//   }
+// }
 
 class BookingBoard extends Component{
 	constructor(props) {

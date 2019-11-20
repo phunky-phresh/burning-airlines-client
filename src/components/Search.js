@@ -113,7 +113,7 @@ return(
     {
       props.flights.map( (f) => {
         let url = `/${props.user}/flight/${f.id}`
-        return (<tr><td><Link to={url}>{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
+        return (<tr key={f.id}><td><Link to={url}>{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
     })
     }
     </tbody>
