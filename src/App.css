@@ -8,10 +8,18 @@ header {
   /* background-color: blue; */
   text-align: right;
 }
+
+.searchWrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
 .flight {
   background-color: gray;
-
+  /* display: inline-block; */
+  padding: 10px;
 }
 .flight p {
   display: inline-block;
+  width: 6rem;
+  /* padding-left: 10px; */
 }
