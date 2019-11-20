@@ -100,15 +100,19 @@ return(
   <div className="searchWrap">
     <h3>Gallery coming soon</h3>
     <table>
+    <thead>
       <tr>
-        <th>Flight No</th>
-        <th>Origin</th>
-        <th>Destination</th>
-        <th>Departure Date</th>
+        <td>Flight No</td>
+        <td>Origin</td>
+        <td>Destination</td>
+        <td>Departure Date</td>
       </tr>
+    </thead>
+    <tbody>
     {
-      props.flights.map( (f) => <tr><td>{f.flight_no}</td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
+      props.flights.map( (f) => <tr><td><Link to="/:user/Flights">{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
     }
+    </tbody>
     </table>
   </div>
 )
