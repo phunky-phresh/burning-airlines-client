@@ -9,20 +9,23 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      // flights: []
-      origin: '',
-      destination: ''
+      flights: [],
+      origin: ''
+      // destination: ''
     }
 
-
+    this.fetchFlights = this.fetchFlights.bind(this);
   // fetchFlights();
 
 }
-fetchFlights(q) {
-  axios.get(`http://localhost:3000/flights.json`).then(result => {
+fetchFlights(origin, destination) {
+  console.log(origin);
+  console.log(destination);
+
+  axios.get(`http://localhost:3000/flights.json?origin=${origin}&destination=${destination}`).then(result => {
     console.log(result);
-    const flights = result.data;
-    this.setState({flights});
+    const flight = result.data;
+    this.setState({flights: flight});
   });
 }
 
@@ -32,7 +35,7 @@ render() {
     <div>
       <h2>Search form coming soon</h2>
       <SearchForm onSubmit={this.fetchFlights}/>
-      <Gallery flights={this.state.query}/>
+      <Gallery flights={this.state.flights}/>
     </div>
   );
 }
@@ -42,8 +45,8 @@ class SearchForm extends Component {
 constructor() {
   super();
   this.state = {
-    origin: '',
-    destination: ''
+    origin: ''
+    // destination: ''
   };
   this._handleInputOrigin = this._handleInputOrigin.bind(this);
   this._handleInputDestination = this._handleInputDestination.bind(this);
@@ -53,7 +56,7 @@ constructor() {
 _handleInputOrigin(event) {
   this.setState({
     // query: event.target.value,
-    origin: event.target.value,
+    origin: event.target.value
 
   });
 }
@@ -63,11 +66,16 @@ _handleInputDestination(event) {
     destination: event.target.value
   });
   // console.log(event.target.value);
-  //event.target.value is working
+  // event.target.value is working
 }
 _handleSubmit(event) {
 event.preventDefault();
-this.props.onSubmit(this.state.query);
+this.props.onSubmit(this.state.origin, this.state.destination);
+this.setState({
+  origin: '',
+  destination: ''
+});
+console.log("is this working");
 //submit is failing.
 }
 
@@ -75,8 +83,9 @@ render() {
   return(
     <form onSubmit={this._handleSubmit}>
       <input type="search" onInput={this._handleInputOrigin} placeholder="origin"/>
-      <input type="search" onInput={this._handleInputDestination} placeholder="destination" />
-      <input type="submit" value="search" />
+      <input type="search" onInput={this._handleInputDestination} placeholder="destination"/>
+
+      <input type="submit" value="Find Flights" />
     </form>
   );
 }
@@ -89,7 +98,7 @@ return(
   <div>
     <h3>Gallery coming soon</h3>
     {
-      // props.query.map( (f) => <p>{f.origin}</p> )
+      props.flights.map( (f) => <div className="flight"><p>Flight No: {f.flight_no}</p><p>Origin: {f.origin}</p> <p>Destination: {f.destination}</p></div>)
     }
   </div>
 )
