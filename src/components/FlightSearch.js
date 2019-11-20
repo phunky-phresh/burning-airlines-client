@@ -1,30 +1,27 @@
-import React, { Component }  from 'react';
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react';
 import axios from 'axios';
 
 // TEST
 // const SERVER_URL = 'http://localhost:3000/flights.json';
 
-class Search extends Component {
+class FlightSearch extends Component {
   constructor() {
     super();
     this.state = {
-      // flights: []
-      origin: '',
-      destination: ''
-    }
+      flights: []
+    };
 
-
+  const fetchFlights = (q) => {
+    axios.get(`http://localhost:3000/flights.json`).then(result => {
+      console.log(result);
+      const flights = result.data;
+      this.setState({flights});
+    });
+  }
   // fetchFlights();
 
 }
-fetchFlights(q) {
-  axios.get(`http://localhost:3000/flights.json`).then(result => {
-    console.log(result);
-    const flights = result.data;
-    this.setState({flights});
-  });
-}
+
 
 
 render() {
@@ -42,25 +39,15 @@ class SearchForm extends Component {
 constructor() {
   super();
   this.state = {
-    origin: '',
-    destination: ''
+    query: ''
   };
-  this._handleInputOrigin = this._handleInputOrigin.bind(this);
-  this._handleInputDestination = this._handleInputDestination.bind(this);
+  this._handleInput = this._handleInput.bind(this);
   this._handleSubmit = this._handleSubmit.bind(this);
 }
 
-_handleInputOrigin(event) {
+_handleInput(event) {
   this.setState({
-    // query: event.target.value,
-    origin: event.target.value,
-
-  });
-}
-_handleInputDestination(event) {
-  this.setState({
-    // query: event.target.value,
-    destination: event.target.value
+    query: event.target.value
   });
   // console.log(event.target.value);
   //event.target.value is working
@@ -74,8 +61,8 @@ this.props.onSubmit(this.state.query);
 render() {
   return(
     <form onSubmit={this._handleSubmit}>
-      <input type="search" onInput={this._handleInputOrigin} placeholder="origin"/>
-      <input type="search" onInput={this._handleInputDestination} placeholder="destination" />
+      <input type="search" onInput={this._handleInput} placeholder="origin"/>
+      <input type="search" onInput={this._handleInput} placeholder="destination" />
       <input type="submit" value="search" />
     </form>
   );
@@ -95,4 +82,4 @@ return(
 )
 }
 
-export default Search;
+export default FlightSearch;
