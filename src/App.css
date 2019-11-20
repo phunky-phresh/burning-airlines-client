@@ -8,3 +8,10 @@ header {
   /* background-color: blue; */
   text-align: right;
 }
+.flight {
+  background-color: gray;
+
+}
+.flight p {
+  display: inline-block;
+}
