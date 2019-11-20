@@ -20,6 +20,7 @@ class Booking extends Component {
         console.log(results);
       });
     }
+
   fetchFlightInfo();
   }
 
@@ -27,6 +28,43 @@ class Booking extends Component {
     return (
       <div>
         <h1>coming soon</h1>
+      </div>
+    )
+  }
+}
+
+class BookingBoard extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			reservations: [],
+			user_id: ''
+		}
+
+		axios.get(SERVER_USER_URL).then((results) => {
+			results.data.some ( (user) => {
+				if ( user.name === this.props.user ){
+					this.setState({ user_id: user.id });
+					return true;
+				}else{
+					return false;
+				}
+			})
+		})
+
+
+	}
+
+
+	createBoard() {
+
+    
+  }
+
+  render(){
+    return(
+      <div>
+
       </div>
     )
   }
