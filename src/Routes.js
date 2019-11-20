@@ -13,8 +13,8 @@ const Routes = (
       <Route exact path="/" component={ Home } />
       <Switch>
         <Route path='/:user/Search' component={ Search } />
-        <Route path='/:user/Flights' component={ Flights } />
-        <Route path='/:user/Flights/:flight' component={ Booking } />
+        <Route path='/:user/flights' component={ Flights } />
+        <Route path='/flights/:flight' component={ Booking } />
         <Route path='/:user/Planes' component={ Planes } />
         <Redirect from='/:user' to='/:user/Search' />
       </Switch>

@@ -21,11 +21,11 @@ class Search extends Component {
 
 }
 fetchFlights(origin, destination) {
-  console.log(origin);
-  console.log(destination);
+  // console.log(origin);
+  // console.log(destination);
 
   axios.get(`http://localhost:3000/flights.json?origin=${origin}&destination=${destination}`).then(result => {
-    console.log(result);
+    // console.log(result);
     const flight = result.data;
     this.setState({flights: flight});
   });
@@ -110,7 +110,10 @@ return(
     </thead>
     <tbody>
     {
-      props.flights.map( (f) => <tr><td><Link to="/:user/Flights">{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
+      props.flights.map( (f) => {
+        let url = `/Flights/${f.id}`
+        return (<tr><td><Link to={url}>{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
+    })
     }
     </tbody>
     </table>
