@@ -8,9 +8,10 @@ import '../App.css';
 // const SERVER_URL = 'http://localhost:3000/flights.json';
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      user: this.props.match.params.user,
       flights: [],
       origin: ''
       // destination: ''
@@ -35,9 +36,9 @@ fetchFlights(origin, destination) {
 render() {
   return(
     <div>
-      <h2>Search form coming soon</h2>
+      <h2>Flight Search</h2>
       <SearchForm onSubmit={this.fetchFlights}/>
-      <Gallery flights={this.state.flights}/>
+      <Gallery flights={this.state.flights} user={ this.state.user }/>
     </div>
   );
 }
@@ -98,7 +99,7 @@ const Gallery = (props) => {
 console.log('rendering with these props', props);
 return(
   <div className="searchWrap">
-    <h3>Gallery coming soon</h3>
+    <h3>Flights Results</h3>
     <table>
     <thead>
       <tr>
@@ -111,7 +112,7 @@ return(
     <tbody>
     {
       props.flights.map( (f) => {
-        let url = `/Flights/${f.id}`
+        let url = `/${props.user}/flight/${f.id}`
         return (<tr><td><Link to={url}>{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
     })
     }

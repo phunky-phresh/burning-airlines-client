@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
-
 const SERVER_FLIGHTS_URL = 'http://localhost:3000/flights.json';
 // const SERVER_RESERVATIONS_URL = 'http://localhost:3000/reservations.json';
 const SERVER_USERS_URL = 'http://localhost:3000/users.json';
@@ -21,14 +20,18 @@ class Booking extends Component {
       });
     }
 
-  fetchFlightInfo();
+    fetchFlightInfo();
   }
 
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <h1>coming soon</h1>
 
+=======
+        <h1>flight booking coming soon</h1>
+>>>>>>> 4a224ff46dc217c923ed031144b75568caac3b32
       </div>
     )
   }
@@ -47,7 +50,7 @@ class BookingBoard extends Component{
 				if ( user.name === this.props.user ){
 					this.setState({ user_id: user.id });
 					return true;
-				}else{
+				} else {
 					return false;
 				}
 			})
@@ -61,8 +64,8 @@ class BookingBoard extends Component{
 
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
 
       </div>
