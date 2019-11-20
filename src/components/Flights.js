@@ -49,7 +49,7 @@ const Gallery = (props) => {
       </thead>
       <tbody>
       {
-        props.flights.map( (f) => <tr><td>{f.flight_no}</td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
+        props.flights.map( (f) => <tr key={f.id}><td>{f.flight_no}</td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
       }
       </tbody>
       </table>

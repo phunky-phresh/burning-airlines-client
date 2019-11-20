@@ -110,7 +110,7 @@ return(
     </thead>
     <tbody>
     {
-      props.flights.map( (f) => <tr><td><Link to="/:user/Flights">{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
+      props.flights.map( (f) => <tr><td><Link to="/:user/Flights/:flight">{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
     }
     </tbody>
     </table>
