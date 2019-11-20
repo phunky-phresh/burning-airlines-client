@@ -4,19 +4,19 @@ import axios from 'axios';
 
 
 const SERVER_FLIGHTS_URL = 'http://localhost:3000/flights.json';
-const SERVER_RESERVATIONS_URL = 'http://localhost:3000/reservations.json';
+// const SERVER_RESERVATIONS_URL = 'http://localhost:3000/reservations.json';
 const SERVER_USERS_URL = 'http://localhost:3000/users.json';
 
 class Booking extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      flight: { },
-      flight_no: 1
+      flight: { }
+      // flight_no:
     };
 
     const fetchFlightInfo = () => {
-      axios.get(SERVER_FLIGHTS_URL).then((results) => {
+      axios.get(`http://localhost:3000/flights/.json`).then((results) => {
         console.log(results.data);
       });
     }
@@ -28,6 +28,7 @@ class Booking extends Component {
     return (
       <div>
         <h1>coming soon</h1>
+
       </div>
     )
   }
