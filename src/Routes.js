@@ -11,13 +11,13 @@ const Routes = (
   <Router>
     <div>
       <Route exact path="/" component={ Home } />
-      <switch>
+      <Switch>
         <Route path='/:user/Search' component={ Search } />
         <Route path='/:user/Flights' component={ Flights } />
         <Route path='/:user/Flights/:flight' component={ Booking } />
         <Route path='/:user/Planes' component={ Planes } />
         <Redirect from='/:user' to='/:user/Search' />
-      </switch>
+      </Switch>
     </div>
   </Router>
 );

@@ -12,14 +12,15 @@ class Booking extends Component {
     super();
     this.state = {
       flight: { },
-      flight_no: ''
+      flight_no: 1
     };
 
     const fetchFlightInfo = () => {
-      axios.get(SERVER_FLIGHTS_URL).then(results => {
-        console.log(results);
+      axios.get(SERVER_FLIGHTS_URL).then((results) => {
+        console.log(results.data);
       });
     }
+
   fetchFlightInfo();
   }
 
@@ -27,6 +28,42 @@ class Booking extends Component {
     return (
       <div>
         <h1>coming soon</h1>
+      </div>
+    )
+  }
+}
+
+class BookingBoard extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			reservations: [],
+			user_id: ''
+		}
+
+		axios.get(SERVER_USERS_URL).then((results) => {
+			results.data.some ( (user) => {
+				if ( user.name === this.props.user ){
+					this.setState({ user_id: user.id });
+					return true;
+				}else{
+					return false;
+				}
+			})
+		})
+
+
+	}
+
+
+	createBoard() {
+
+  }
+
+  render(){
+    return(
+      <div>
+
       </div>
     )
   }
