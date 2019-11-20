@@ -13,7 +13,6 @@ class Flights extends Component {
       user: this.props.match.params.user
   };
 
-
   const fetchFlights = () => {
     // console.log('Fetching flights');
     axios.get(SERVER_FLIGHTS_URL).then( (results) => {

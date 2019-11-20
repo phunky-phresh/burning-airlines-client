@@ -1,6 +1,8 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import '../App.css';
+
 
 // TEST
 // const SERVER_URL = 'http://localhost:3000/flights.json';
@@ -95,11 +97,23 @@ const Gallery = (props) => {
 
 console.log('rendering with these props', props);
 return(
-  <div>
+  <div className="searchWrap">
     <h3>Gallery coming soon</h3>
+    <table>
+    <thead>
+      <tr>
+        <td>Flight No</td>
+        <td>Origin</td>
+        <td>Destination</td>
+        <td>Departure Date</td>
+      </tr>
+    </thead>
+    <tbody>
     {
-      props.flights.map( (f) => <div className="flight"><p>Flight No: {f.flight_no}</p><p>Origin: {f.origin}</p> <p>Destination: {f.destination}</p></div>)
+      props.flights.map( (f) => <tr><td><Link to="/:user/Flights">{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
     }
+    </tbody>
+    </table>
   </div>
 )
 }
