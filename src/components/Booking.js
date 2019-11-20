@@ -8,30 +8,42 @@ const SERVER_USERS_URL = 'http://localhost:3000/users.json';
 
 class Booking extends Component {
   constructor(props) {
+    console.log(props);
     super();
     this.state = {
-      flight: { }
+      flight: []
       // flight_no:
     };
-
-    const fetchFlightInfo = () => {
-      axios.get(`http://localhost:3000/flights/.json`).then((results) => {
+    const flight_id = props.match.params.flight;
+    console.log(flight_id);
+    const fetchFlightInfo = (flight_id) => {
+      axios.get(`http://localhost:3000/flights/${flight_id}.json`).then((results) => {
         console.log(results.data);
+        const flight = results.data;
+        this.setState({flight: flight});
       });
     }
 
-    fetchFlightInfo();
+    fetchFlightInfo(flight_id);
   }
 
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        <h1>coming soon</h1>
-
-=======
         <h1>flight booking coming soon</h1>
->>>>>>> 4a224ff46dc217c923ed031144b75568caac3b32
+        <table>
+        <thead>
+          <tr>
+            <td>Flight No</td>
+            <td>Origin</td>
+            <td>Destination</td>
+            <td>Departure Date</td>
+          </tr>
+        </thead>
+        <tbody>
+        <tr><td>{this.state.flight.flight_no}</td><td>{this.state.flight.origin}</td><td>{this.state.flight.destination}</td><td>{this.state.flight.date}</td></tr>
+        </tbody>
+        </table>
       </div>
     )
   }
