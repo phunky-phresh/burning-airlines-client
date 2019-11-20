@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import FlightSearch from './FlightSearch';
+import Flights from './Flights'
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       </header>
       <h1>Burning Airlines</h1>
       <FlightSearch />
+      <Flights />
     </div>
   );
 }
