@@ -35,7 +35,7 @@ fetchFlights(origin, destination) {
 render() {
   return(
     <div>
-      <h2>Search form coming soon</h2>
+      <h2>Flight Search</h2>
       <SearchForm onSubmit={this.fetchFlights}/>
       <Gallery flights={this.state.flights}/>
     </div>
@@ -98,7 +98,7 @@ const Gallery = (props) => {
 console.log('rendering with these props', props);
 return(
   <div className="searchWrap">
-    <h3>Gallery coming soon</h3>
+    <h3>Flights Results</h3>
     <table>
     <thead>
       <tr>
