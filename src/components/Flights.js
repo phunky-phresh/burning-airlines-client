@@ -9,7 +9,6 @@ class Flights extends Component {
     super(props);
       this.state = {
       flights:[],
-      planes: [],
       user: this.props.match.params.user
   };
 
@@ -36,36 +35,7 @@ class Flights extends Component {
   }
 }
 
-class FlightsTable extends Component {
-  render() {
-    return (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Flight No</th>
-              <th>From</th>
-              <th>To</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.flights.map( (flight) =>
-            <tr key={ flight.id }>
-              <td>{ flight.date }</td>
-              <td>{ flight.flight_no }</td>
-              <td>{ flight.origin }</td>
-              <td>{ flight.destination }</td>
-            </tr>) }
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
-
-<<<<<<< HEAD
-const Gallery = (props) => {
+const FlightsTable = (props) => {
   return(
     <div className="searchWrap">
       <h3>All Flights</h3>
@@ -88,6 +58,4 @@ const Gallery = (props) => {
   )
 };
 
-=======
->>>>>>> 1bb1af719d38e164629260f7187f8d649b2b3280
 export default Flights;
