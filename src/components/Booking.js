@@ -41,7 +41,7 @@ class BookingBoard extends Component{
 			user_id: ''
 		}
 
-		axios.get(SERVER_USER_URL).then((results) => {
+		axios.get(SERVER_USERS_URL).then((results) => {
 			results.data.some ( (user) => {
 				if ( user.name === this.props.user ){
 					this.setState({ user_id: user.id });
@@ -58,7 +58,6 @@ class BookingBoard extends Component{
 
 	createBoard() {
 
-    
   }
 
   render(){
