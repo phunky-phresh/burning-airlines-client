@@ -12,6 +12,7 @@ function App() {
         </nav>
       </header>
       <h1>Burning Airlines</h1>
+      <Booking />
       <Search />
     </div>
   );
