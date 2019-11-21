@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import '../index.css';
 
 const SERVER_USERS_URL = 'http://localhost:3000/users.json'
 

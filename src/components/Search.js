@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import '../App.css';
-
+import '../index.css'
 
 // TEST
 // const SERVER_URL = 'http://localhost:3000/flights.json';
@@ -13,8 +13,8 @@ class Search extends Component {
     this.state = {
       user: this.props.match.params.user,
       flights: [],
-      origin: ''
-      // destination: ''
+      origin: '',
+      destination: ''
     }
 
     this.fetchFlights = this.fetchFlights.bind(this);
@@ -113,8 +113,15 @@ return(
     {
       props.flights.map( (f) => {
         let url = `/${props.user}/flight/${f.id}`
-        return (<tr><td><Link to={url}>{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
-    })
+        return (
+          <tr>
+            <td><Link to={url}>{f.flight_no}</Link></td>
+            <td>{f.origin}</td>
+            <td>{f.destination}</td>
+            <td>{f.date}</td>
+          </tr>
+        )
+      })
     }
     </tbody>
     </table>
