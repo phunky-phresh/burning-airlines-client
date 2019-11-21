@@ -53,7 +53,38 @@ class Booking extends Component {
           />
       </div>
     )
+    console.log(this.state.flight);
+
   }
+}
+
+const PlaneSeats = (props) => {
+
+  console.log('rendering with these props', props.flightData.plane_id);
+  const plane_id = props.flightData.plane_id;
+  console.log(plane_id);
+  let planeName = '';
+
+  const fetchPlaneInfo = () => {
+    axios.get(`http://localhost:3000/planes/${plane_id}.json`).then((results) => {
+
+      const plane = results.data;
+      const name = plane.name
+      planeName += name;
+      // planeData.push(plane);
+      // console.log(plane);
+      // this.setState({flight: flight});
+      // setInterval( fetchPlaneInfo, 5000);
+    });
+  }
+  fetchPlaneInfo();
+  console.log(planeName);
+  return (
+    <div>
+      <h2>plane seats coming soon</h2>
+      <p>{planeName}</p>
+    </div>
+  )
 }
 
 class Seat extends Component {

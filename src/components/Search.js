@@ -113,6 +113,7 @@ return(
     {
       props.flights.map( (f) => {
         let url = `/${props.user}/flight/${f.id}`
+<<<<<<< HEAD
         return (
           <tr>
             <td><Link to={url}>{f.flight_no}</Link></td>
@@ -122,6 +123,10 @@ return(
           </tr>
         )
       })
+=======
+        return (<tr key={f.id}><td><Link to={url}>{f.flight_no}</Link></td><td>{f.origin}</td><td>{f.destination}</td><td>{f.date}</td></tr>)
+    })
+>>>>>>> f029b009cb9c15703f5cb9768d2bbae99499461c
     }
     </tbody>
     </table>
